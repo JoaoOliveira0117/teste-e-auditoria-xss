@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perfil (vulnerável)</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="tag tag-vuln">VERSÃO VULNERÁVEL</div>
+    <nav>
+      <a href="/">Voltar ao mural</a>
+      <form method="post" action="/logout" class="inline"><button type="submit">Sair</button></form>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Perfil</h1>
+    <!-- Página usada para provar o sequestro de sessão: quem apresentar o cookie
+         `sid` da vítima é tratado como a vítima aqui. -->
+    <p>Você está autenticado como <strong><%= user.username %></strong> (id <%= user.id %>).</p>
+  </main>
+</body>
+</html>

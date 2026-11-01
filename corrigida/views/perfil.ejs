@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perfil (corrigido)</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="tag tag-ok">VERSÃO CORRIGIDA</div>
+    <nav>
+      <a href="/">Voltar ao mural</a>
+      <form method="post" action="/logout" class="inline"><button type="submit">Sair</button></form>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Perfil</h1>
+    <p>Você está autenticado como <strong><%= user.username %></strong> (id <%= user.id %>).</p>
+  </main>
+</body>
+</html>

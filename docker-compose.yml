@@ -1,0 +1,79 @@
+# ============================================================================
+#  Laboratório XSS Armazenado + Roubo de Sessão
+#  Disciplina: Segurança e Auditoria de Sistemas (Feevale)
+#  Dupla: João Oliveira e Mateus Wolke
+# ----------------------------------------------------------------------------
+#  Três serviços em uma rede Docker isolada (bridge):
+#    - vulneravel : mural de recados PROPOSITALMENTE inseguro  (http://localhost:3001)
+#    - corrigida  : o MESMO mural, com as falhas mitigadas     (http://localhost:3002)
+#    - coletor    : servidor do "atacante" que recebe os cookies roubados
+#                   durante a demonstração                      (http://localhost:3009)
+#
+#  Isolamento: todas as portas são publicadas SOMENTE em 127.0.0.1 (loopback),
+#  então nada fica exposto na rede local. Os três containers conversam apenas
+#  pela rede interna `labxss`. Nenhum dado sai da máquina.
+#
+#  Subir o laboratório:   docker compose up --build
+#  Derrubar e limpar:     docker compose down -v
+# ============================================================================
+
+name: lab-xss
+
+services:
+  vulneravel:
+    build: ./vulneravel
+    image: mural-vulneravel
+    container_name: mural-vulneravel
+    environment:
+      - PORT=3000
+      - DB_PATH=/app/data/mural.db
+    ports:
+      - "127.0.0.1:3001:3000"
+    volumes:
+      - vuln-data:/app/data
+    networks:
+      - labxss
+    restart: unless-stopped
+
+  corrigida:
+    build: ./corrigida
+    image: mural-corrigida
+    container_name: mural-corrigida
+    environment:
+      - PORT=3000
+      - DB_PATH=/app/data/mural.db
+      # No acesso via http://localhost o navegador trata a origem como segura,
+      # então o cookie Secure funciona. Se precisar acessar por outro host HTTP,
+      # defina COOKIE_SECURE=false apenas para fins de teste.
+      - COOKIE_SECURE=true
+    ports:
+      - "127.0.0.1:3002:3000"
+    volumes:
+      - fix-data:/app/data
+    networks:
+      - labxss
+    restart: unless-stopped
+
+  coletor:
+    build: ./coletor
+    image: coletor-cookies
+    container_name: coletor-cookies
+    environment:
+      - PORT=3009
+      - LOG_PATH=/app/data/cookies.log
+    ports:
+      - "127.0.0.1:3009:3009"
+    volumes:
+      - coletor-data:/app/data
+    networks:
+      - labxss
+    restart: unless-stopped
+
+networks:
+  labxss:
+    driver: bridge
+
+volumes:
+  vuln-data:
+  fix-data:
+  coletor-data:

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar — Mural (corrigido)</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="card">
+    <div class="tag tag-ok">VERSÃO CORRIGIDA</div>
+    <h1>Mural de Recados</h1>
+    <h2>Entrar</h2>
+    <% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+    <form method="post" action="/login">
+      <label>Usuário <input name="username" autocomplete="username" required></label>
+      <label>Senha <input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem conta? <a href="/register">Cadastre-se</a>.</p>
+  </main>
+</body>
+</html>

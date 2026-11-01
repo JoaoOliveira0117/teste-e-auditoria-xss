@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro — Mural (vulnerável)</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="card">
+    <div class="tag tag-vuln">VERSÃO VULNERÁVEL</div>
+    <h1>Mural de Recados</h1>
+    <h2>Criar conta</h2>
+    <% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+    <form method="post" action="/register">
+      <label>Usuário <input name="username" autocomplete="username" required></label>
+      <label>Senha <input name="password" type="password" autocomplete="new-password" required></label>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p>Já tem conta? <a href="/login">Entrar</a>.</p>
+  </main>
+</body>
+</html>

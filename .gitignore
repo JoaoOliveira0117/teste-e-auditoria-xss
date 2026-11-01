@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+
+# Dados de runtime do laboratório (bancos SQLite e logs do coletor)
+data/
+*.db
+*.db-shm
+*.db-wal
+*.log
+
+# Ambiente / sistema
+.env
+.DS_Store
+Thumbs.db
+
+# Evidências locais capturadas durante os testes (ficam fora do versionamento)
+evidencias/

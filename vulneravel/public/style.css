@@ -1,0 +1,54 @@
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --fg: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --danger: #ef4444;
+  --ok: #22c55e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+a { color: var(--accent); }
+.container { max-width: 760px; margin: 0 auto; padding: 24px 16px; }
+.card {
+  max-width: 420px; margin: 48px auto; padding: 28px;
+  background: var(--card); border-radius: 12px;
+}
+h1 { margin-top: 0; }
+label { display: block; margin: 12px 0; }
+input, textarea {
+  width: 100%; padding: 10px; margin-top: 4px;
+  border: 1px solid #334155; border-radius: 8px;
+  background: #0b1220; color: var(--fg); font: inherit;
+}
+button {
+  padding: 10px 18px; border: 0; border-radius: 8px;
+  background: var(--accent); color: #082f49; font-weight: 600; cursor: pointer;
+}
+.inline { display: inline; }
+.erro { color: var(--danger); font-weight: 600; }
+.topo {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--card);
+}
+.topo nav { display: flex; align-items: center; gap: 16px; }
+.tag {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; letter-spacing: .5px;
+}
+.tag-vuln { background: #7f1d1d; color: #fecaca; }
+.tag-ok { background: #14532d; color: #bbf7d0; }
+.novo-recado { margin: 20px 0 28px; }
+.recados { list-style: none; padding: 0; display: grid; gap: 12px; }
+.recado { background: var(--card); border-radius: 10px; padding: 14px 16px; }
+.recado-cab { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.data { color: var(--muted); font-size: 12px; }
+.vazio { color: var(--muted); }

@@ -1,0 +1,10 @@
+{
+  "name": "coletor-cookies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Servidor do atacante: recebe os cookies roubados via XSS (laboratório educacional)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mural (vulnerável)</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="tag tag-vuln">VERSÃO VULNERÁVEL</div>
+    <nav>
+      <span>Logado como <strong><%= user.username %></strong></span>
+      <a href="/perfil">Perfil</a>
+      <form method="post" action="/logout" class="inline"><button type="submit">Sair</button></form>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Mural de Recados</h1>
+
+    <form method="post" action="/mural" class="novo-recado">
+      <label for="content">Deixe um recado para todos:</label>
+      <textarea id="content" name="content" rows="3" placeholder="Escreva aqui..."></textarea>
+      <button type="submit">Publicar</button>
+    </form>
+
+    <ul class="recados">
+      <% messages.forEach(function (m) { %>
+        <li class="recado">
+          <div class="recado-cab">
+            <!-- [VULN-XSS] autor renderizado SEM escape (<%%- %>) -->
+            <strong><%- m.author %></strong>
+            <span class="data"><%= m.created_at %> UTC</span>
+          </div>
+          <!-- [VULN-XSS] conteúdo renderizado SEM escape: aqui mora o XSS armazenado -->
+          <div class="recado-corpo"><%- m.content %></div>
+        </li>
+      <% }); %>
+      <% if (messages.length === 0) { %>
+        <li class="vazio">Nenhum recado ainda. Seja o primeiro!</li>
+      <% } %>
+    </ul>
+  </main>
+</body>
+</html>
