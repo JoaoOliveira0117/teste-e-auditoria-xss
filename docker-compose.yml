@@ -20,6 +20,7 @@
 name: lab-xss
 
 services:
+
   vulneravel:
     build: ./vulneravel
     image: mural-vulneravel

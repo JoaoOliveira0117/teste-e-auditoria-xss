@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coletor de Cookies (atacante)</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>🎣 Coletor de Cookies <span class="sub">(servidor do atacante — laboratório)</span></h1>
+  <p class="sub"><%= captured.length %> captura(s). Atualize a página após disparar o ataque.</p>
+
+  <% if (captured.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Horário (UTC)</th>
+          <th>IP</th>
+          <th>Cookie roubado</th>
+          <th>Origem (Referer)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% captured.forEach(function (entry) { %>
+          <tr>
+            <td><%= entry.time %></td>
+            <td><%= entry.ip %></td>
+            <td><code><%= entry.cookie %></code></td>
+            <td><%= entry.referer %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p class="vazio">Nenhum cookie capturado ainda.</p>
+  <% } %>
+</body>
+</html>
