@@ -65,7 +65,7 @@ app.get('/dados', (_req, res) => {
 
 // --- Painel do atacante -----------------------------------------------------
 app.get('/', (_req, res) => {
-  res.render('painel', { captured: getCaptures().slice().reverse() });
+  res.render('painel', { captured: store.getCaptures().slice().reverse() });
 });
 
 app.use((_req, res) => {
